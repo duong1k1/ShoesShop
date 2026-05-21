@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "IZRxxB2x05M=",
+  "dgSpecHash": "jlDAdRCB7/Y=",
   "success": true,
   "projectFilePath": "D:\\TT\\ShoesShop\\ShoesShop.Infrastructure\\ShoesShop.Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.1\\fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
   "logs": []
 }
