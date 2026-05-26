@@ -16,3 +16,23 @@ D:\TT\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Application.
 D:\TT\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Domain.pdb
 D:\TT\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.csproj.AssemblyReference.cache
 D:\TT\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesSho.2C210A4A.Up2Date
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Infrastructure.deps.json
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Infrastructure.runtimeconfig.json
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Infrastructure.dll
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Infrastructure.pdb
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Application.dll
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Domain.dll
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Application.pdb
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\bin\Debug\net8.0\ShoesShop.Domain.pdb
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.csproj.AssemblyReference.cache
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.AssemblyInfoInputs.cache
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.AssemblyInfo.cs
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.csproj.CoreCompileInputs.cache
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.sourcelink.json
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesSho.2C210A4A.Up2Date
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.dll
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\refint\ShoesShop.Infrastructure.dll
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.pdb
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ShoesShop.Infrastructure.genruntimeconfig.cache
+D:\THỰC TẬP\ShoesShop\ShoesShop.Infrastructure\obj\Debug\net8.0\ref\ShoesShop.Infrastructure.dll

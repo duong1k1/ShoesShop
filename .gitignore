@@ -1,0 +1,10 @@
+﻿## Khóa hoàn toàn thư mục rác .vs
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Khóa các thư mục build tạm của C#
+bin/
+obj/

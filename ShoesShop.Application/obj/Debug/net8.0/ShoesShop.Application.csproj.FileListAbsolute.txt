@@ -14,3 +14,21 @@ D:\TT\ShoesShop\ShoesShop.Application\bin\Debug\net8.0\ShoesShop.Domain.dll
 D:\TT\ShoesShop\ShoesShop.Application\bin\Debug\net8.0\ShoesShop.Domain.pdb
 D:\TT\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.csproj.AssemblyReference.cache
 D:\TT\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesSho.2ED3661F.Up2Date
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\bin\Debug\net8.0\ShoesShop.Application.deps.json
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\bin\Debug\net8.0\ShoesShop.Application.runtimeconfig.json
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\bin\Debug\net8.0\ShoesShop.Application.dll
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\bin\Debug\net8.0\ShoesShop.Application.pdb
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\bin\Debug\net8.0\ShoesShop.Domain.dll
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\bin\Debug\net8.0\ShoesShop.Domain.pdb
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.csproj.AssemblyReference.cache
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.AssemblyInfoInputs.cache
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.AssemblyInfo.cs
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.csproj.CoreCompileInputs.cache
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.sourcelink.json
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesSho.2ED3661F.Up2Date
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.dll
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\refint\ShoesShop.Application.dll
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.pdb
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ShoesShop.Application.genruntimeconfig.cache
+D:\THỰC TẬP\ShoesShop\ShoesShop.Application\obj\Debug\net8.0\ref\ShoesShop.Application.dll
