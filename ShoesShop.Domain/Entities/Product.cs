@@ -31,4 +31,6 @@ public class Product
     public DateTime? DeletedAt { get; set; }
 
     public ICollection<ProductVariant> ProductVariants { get; set; } = new List<ProductVariant>();
+
+    public ICollection<Review> Reviews { get; set; } = new List<Review>();
 }

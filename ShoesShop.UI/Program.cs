@@ -14,6 +14,11 @@ using ShoesShop.UI.Filters;
 using ShoesShop.UI.Middlewares;
 using ShoesShop.Application.Interfaces.Payments;
 using ShoesShop.Infrastructure.Services.Payments;
+using ShoesShop.Application.Interfaces.Repositories;
+using ShoesShop.Application.Interfaces.Services;
+using ShoesShop.Application.Services;
+using ShoesShop.Application.Validators.Reviews;
+using ShoesShop.Infrastructure.Repositories;
 
 
 
@@ -42,6 +47,12 @@ builder.Services.AddSwaggerGen();
 // Đăng ký các dịch vụ liên quan đến thanh toán
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+
+// Đăng ký các dịch vụ liên quan đến đánh giá
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateReviewRequestValidator>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<CheckoutRequestValidator>();
 

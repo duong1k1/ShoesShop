@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShoesShop.Application.DTOs.Reviews
+namespace ShoesShop.Application.DTOs.Reviews;
+
+public class UpdateReviewRequest
 {
-    internal class UpdateReviewRequest
-    {
-    }
+    public int Rating { get; set; }
+
+    public string? Comment { get; set; }
 }

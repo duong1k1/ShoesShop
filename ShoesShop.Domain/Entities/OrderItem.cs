@@ -27,4 +27,6 @@ public class OrderItem
     public Order Order { get; set; } = null!;
 
     public ProductVariant ProductVariant { get; set; } = null!;
+
+    public Review? Review { get; set; }
 }
