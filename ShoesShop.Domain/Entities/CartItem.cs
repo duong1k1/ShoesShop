@@ -2,11 +2,11 @@ namespace ShoesShop.Domain.Entities;
 
 public class CartItem
 {
-    public int CartItemId { get; set; }
+    public long CartItemId { get; set; }
 
-    public int CartId { get; set; }
+    public long CartId { get; set; }
 
-    public int ProductVariantId { get; set; }
+    public long ProductVariantId { get; set; }
 
     public int Quantity { get; set; }
 

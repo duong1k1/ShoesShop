@@ -2,9 +2,11 @@ namespace ShoesShop.Domain.Entities;
 
 public class Cart
 {
-    public int CartId { get; set; }
+    public long CartId { get; set; }
 
-    public int UserId { get; set; }
+    public long UserId { get; set; }
+
+    public string Status { get; set; } = "Active";
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

@@ -2,12 +2,11 @@ namespace ShoesShop.Application.DTOs.Carts;
 
 public class CartItemResponse
 {
-    public int CartItemId { get; set; }
+    public long CartItemId { get; set; }
 
-    public int ProductId { get; set; }
+    public long ProductId { get; set; }
 
-    public int ProductVariantId { get; set; }
-
+    public long ProductVariantId { get; set; }
     public string ProductName { get; set; } = string.Empty;
 
     public string Size { get; set; } = string.Empty;

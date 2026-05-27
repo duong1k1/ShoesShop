@@ -11,6 +11,10 @@ namespace ShoesShop.Application.Validators.Carts;
 
 public class AddCartItemRequestValidator : AbstractValidator<AddCartItemRequest>
 {
+    /// <summary>
+    /// Validator cho AddCartItemRequest, đảm bảo rằng ProductId là số dương,
+    /// Size và Color không được để trống và có độ dài hợp lý, Quantity phải lớn hơn 0 và không vượt quá 100.
+    /// </summary>
     public AddCartItemRequestValidator()
     {
         RuleFor(x => x.ProductId)

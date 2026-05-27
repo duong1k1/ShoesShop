@@ -2,9 +2,9 @@ namespace ShoesShop.Application.DTOs.Carts;
 
 public class CartResponse
 {
-    public int CartId { get; set; }
+    public long CartId { get; set; }
 
-    public int UserId { get; set; }
+    public long UserId { get; set; }
 
     public List<CartItemResponse> Items { get; set; } = new();
 
