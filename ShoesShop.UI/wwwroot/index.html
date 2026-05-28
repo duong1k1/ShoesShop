@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoesShop - Quản lý Chức năng (Ngọc Minh)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .card {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: none;
+            margin-bottom: 25px;
+        }
+
+        .nav-tabs .nav-link {
+            color: #495057;
+            font-weight: 600;
+        }
+
+            .nav-tabs .nav-link.active {
+                background-color: #fff;
+                color: #0d6efd;
+                border-bottom-color: transparent;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold text-primary">👟 SHOESSHOP MANAGEMENT INTERFACE</h1>
+            <p class="text-muted">Hệ thống quản trị chức năng phân công - Sinh viên: Ngọc Minh</p>
+        </div>
+
+        <ul class="nav nav-tabs justify-content-center mb-4" id="myTab" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="auth-tab" data-bs-toggle="tab" data-bs-target="#auth-panel">1. Đăng ký & Đăng nhập</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users-panel" onclick="loadUsers()">2. Quản lý Thành viên & Phân quyền</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="vouchers-tab" data-bs-toggle="tab" data-bs-target="#vouchers-panel">3. Quản lý Kho Voucher</button>
+            </li>
+
+            <li class="nav-item ms-3">
+                <a href="/swagger" target="_blank" class="btn btn-dark fw-bold">⚙️ Xem API Swagger</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="auth-panel" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card p-4">
+                            <h3 class="card-title text-success mb-3">Form Đăng Ký Tài Khoản</h3>
+                            <form id="registerForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Họ và Tên</label>
+                                    <input type="text" id="regName" class="form-control" required placeholder="Nguyễn Văn A">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email (Tài khoản)</label>
+                                    <input type="email" id="regEmail" class="form-control" required placeholder="Anv@gmail.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Mật khẩu</label>
+                                    <input type="password" id="regPass" class="form-control" required placeholder="••••••••">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <input type="text" id="regPhone" class="form-control" placeholder="0912345678">
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Đăng Ký Hệ Thống (Có gửi Email)</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-4">
+                            <h3 class="card-title text-primary mb-3">Form Đăng Nhập</h3>
+                            <form id="loginForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" id="loginEmail" class="form-control" required placeholder="Anv@gmail.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Mật khẩu</label>
+                                    <input type="password" id="loginPass" class="form-control" required placeholder="••••••••">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 mb-3">Đăng Nhập lấy Token JWT</button>
+                            </form>
+                            <div class="alert alert-secondary d-none" id="tokenBox" style="word-break: break-all;">
+                                <strong>Token JWT của bạn:</strong> <span id="jwtTokenText"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="users-panel" role="tabpanel">
+                <div class="card p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3 class="text-primary mb-0">Danh Sách Thành Viên & Cấu Hình Quyền Hạn</h3>
+                        <button class="btn btn-outline-primary btn-sm" onclick="loadUsers()">🔄 Làm mới danh sách</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Họ Tên</th>
+                                    <th>Email</th>
+                                    <th>Số Điện Thoại</th>
+                                    <th>Quyền Hạn</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="vouchers-panel" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card p-4">
+                            <h4 class="text-primary mb-3">Thêm Cấu Hình Voucher</h4>
+                            <form id="voucherForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Mã Voucher (Code)</label>
+                                    <input type="text" id="vCode" class="form-control" required placeholder="SNEAKER2026">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">ID Người dùng áp dụng</label>
+                                    <input type="number" id="vUserId" class="form-control" required placeholder="1">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Thêm Voucher Vào Kho</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card p-4">
+                            <h4 class="text-success mb-3">Kho Lưu Trữ Cấu Hình Voucher (Admin)</h4>
+                            <table class="table table-bordered align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Mã Code</th>
+                                        <th>User áp dụng</th>
+                                        <th>Thời gian tạo</th>
+                                        <th>Xử lý</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="voucherTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // TỰ ĐỘNG LẤY ĐƯỜNG DẪN CỔNG SERVER ĐANG CHẠY THỰC TẾ
+        const API_BASE_URL = `${window.location.origin}/api`;
+
+        // --- ĐĂNG KÝ ---
+        document.getElementById("registerForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = {
+                email: document.getElementById("regEmail").value,
+                password: document.getElementById("regPass").value,
+                fullName: document.getElementById("regName").value,
+                phoneNumber: document.getElementById("regPhone").value
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/Auth/register`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.text();
+                alert(result);
+                document.getElementById("registerForm").reset();
+            } catch (error) {
+                alert("Lỗi kết nối API Đăng ký!");
+            }
+        });
+
+        // --- ĐĂNG NHẬP ---
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = {
+                email: document.getElementById("loginEmail").value,
+                password: document.getElementById("loginPass").value
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/Auth/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+                if (response.ok) {
+                    const token = await response.text();
+                    document.getElementById("tokenBox").classList.remove("d-none");
+                    document.getElementById("jwtTokenText").innerText = token;
+                    localStorage.setItem("userToken", token);
+                    alert("Đăng nhập thành công! Đã lưu Token JWT.");
+                } else {
+                    alert("Đăng nhập thất bại! Sai tài khoản hoặc mật khẩu.");
+                }
+            } catch (error) {
+                alert("Lỗi kết nối API Đăng nhập!");
+            }
+        });
+
+        // --- TẢI DANH SÁCH USER (TÍCH HỢP badge QUYỀN VÀ MENU ĐỔI QUYỀN) ---
+        async function loadUsers() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/Users`);
+                const users = await response.json();
+                const tbody = document.getElementById("userTableBody");
+                tbody.innerHTML = "";
+
+                users.forEach(u => {
+                    const roleName = u.role || 'Customer';
+                    const roleBadge = roleName === 'Admin' ? 'bg-danger' : 'bg-secondary';
+                    const statusBadge = u.status === 'Active' ? 'bg-success' : 'bg-danger';
+
+                    tbody.innerHTML += `
+                            <tr>
+                                <td>${u.id}</td>
+                                <td><b>${u.fullName}</b></td>
+                                <td>${u.email}</td>
+                                <td>${u.phoneNumber || 'Trống'}</td>
+                                <td><span class="badge ${roleBadge}">${roleName}</span></td>
+                                <td><span class="badge ${statusBadge}">${u.status}</span></td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <select class="form-select form-select-sm" style="width: 130px;" onchange="changeUserRole(${u.id}, this.value)">
+                                            <option value="">-- Đổi Quyền --</option>
+                                            <option value="Customer" ${roleName === 'Customer' ? 'disabled' : ''}>Customer</option>
+                                            <option value="Admin" ${roleName === 'Admin' ? 'disabled' : ''}>Admin</option>
+                                        </select>
+                                        <button class="btn btn-warning btn-sm fw-bold" onclick="toggleUserStatus(${u.id}, '${u.status}')">🔄 Trạng thái</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                });
+            } catch (error) {
+                console.error("Không thể tải danh sách người dùng.");
+            }
+        }
+
+        // --- GỌI API THAY ĐỔI QUYỀN HẠN (ROLE TRUYỀN QUA QUERY) ---
+        async function changeUserRole(userId, newRole) {
+            if (!newRole) return;
+
+            if (confirm(`Bạn có chắc chắn muốn chuyển User ID ${userId} thành quyền [${newRole}] không?`)) {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/Auth/users/${userId}/assign-role?newRole=${newRole}`, {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" }
+                    });
+
+                    if (response.ok) {
+                        alert(`Chúc mừng! Đã phân quyền thành công User ID ${userId} thành: ${newRole}`);
+                        loadUsers();
+                    } else {
+                        const errText = await response.text();
+                        alert(`Lỗi phân quyền từ máy chủ: ${errText}`);
+                    }
+                } catch (error) {
+                    alert("Lỗi kết nối đến API Phân Quyền!");
+                }
+            }
+        }
+
+        // --- ĐỔI TRẠNG THÁI USER ---
+        async function toggleUserStatus(id, currentStatus) {
+            const newStatus = currentStatus === "Active" ? "Inactive" : "Active";
+            try {
+                const response = await fetch(`${API_BASE_URL}/Users/${id}/status`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newStatus)
+                });
+
+                if (response.ok) {
+                    alert(`Đã chuyển đổi trạng thái thành viên sang: ${newStatus}`);
+                    loadUsers();
+                } else {
+                    alert("Lỗi khi cập nhật trạng thái từ máy chủ.");
+                }
+            } catch (error) {
+                alert("Không thể kết nối API cập nhật trạng thái!");
+            }
+        }
+
+        // --- TẢI DANH SÁCH VOUCHER ---
+        document.getElementById("vouchers-tab").addEventListener("click", loadVouchers);
+        async function loadVouchers() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/Vouchers`);
+                const vouchers = await response.json();
+                const tbody = document.getElementById("voucherTableBody");
+                tbody.innerHTML = "";
+
+                vouchers.forEach(v => {
+                    tbody.innerHTML += `
+                            <tr>
+                                <td>${v.id}</td>
+                                <td><span class="badge bg-info text-dark">${v.voucherCode}</span></td>
+                                <td>User ID: ${v.userId}</td>
+                                <td>${new Date(v.usedAt).toLocaleString('vi-VN')}</td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteVoucher(${v.id})">Xóa</button>
+                                </td>
+                            </tr>
+                        `;
+                });
+            } catch (error) {
+                console.error("Không thể tải danh sách Voucher.");
+            }
+        }
+
+        // --- THÊM VOUCHER ---
+        document.getElementById("voucherForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const data = {
+                voucherCode: document.getElementById("vCode").value,
+                userId: parseInt(document.getElementById("vUserId").value),
+                usedAt: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/Vouchers`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+                if (response.ok) {
+                    alert("Thêm cấu hình Voucher thành công!");
+                    document.getElementById("voucherForm").reset();
+                    loadVouchers();
+                }
+            } catch (error) {
+                alert("Lỗi khi thêm Voucher!");
+            }
+        });
+
+        // --- XÓA VOUCHER ---
+        async function deleteVoucher(id) {
+            if (confirm("Bạn có chắc chắn muốn xóa mã này khỏi kho hệ thống không?")) {
+                try {
+                    await fetch(`${API_BASE_URL}/Vouchers/${id}`, { method: "DELETE" });
+                    alert("Đã xóa voucher thành công!");
+                    loadVouchers();
+                } catch (error) {
+                    alert("Lỗi khi xóa voucher!");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

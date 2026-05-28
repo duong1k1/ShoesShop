@@ -22,6 +22,8 @@ public class ApplicationDbContext : DbContext
     {
     }
 
+    public DbSet<Review> Reviews => Set<Review>();
+
     public DbSet<Cart> Carts => Set<Cart>();
     public DbSet<CartItem> CartItems => Set<CartItem>();
     public DbSet<Product> Products => Set<Product>();
@@ -269,6 +271,41 @@ public class ApplicationDbContext : DbContext
             entity.HasOne(x => x.Order)
                 .WithMany(x => x.PaymentTransactions)
                 .HasForeignKey(x => x.OrderId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Review>(entity =>
+        {
+            entity.ToTable("Reviews");
+
+            entity.HasKey(x => x.ReviewId);
+
+            entity.Property(x => x.Rating)
+                .IsRequired();
+
+            entity.Property(x => x.Comment)
+                .HasMaxLength(2000);
+
+            entity.Property(x => x.Status)
+                .HasMaxLength(30)
+                .IsRequired();
+
+            entity.Property(x => x.CreatedAt)
+                .IsRequired();
+
+            entity.HasOne(x => x.Product)
+                .WithMany(x => x.Reviews)
+                .HasForeignKey(x => x.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(x => x.User)
+                .WithMany(x => x.Reviews)
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(x => x.OrderItem)
+                .WithOne(x => x.Review)
+                .HasForeignKey<Review>(x => x.OrderItemId)
                 .OnDelete(DeleteBehavior.Restrict);
         });
     }
