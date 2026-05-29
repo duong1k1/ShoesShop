@@ -38,9 +38,9 @@ builder.Services.AddControllers(options =>
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(connectionString);
-});
+    options.UseSqlServer(connectionString));
+builder.Services.AddScoped<ShoesShop.Application.Interfaces.Common.IApplicationDbContext>(
+    sp => sp.GetRequiredService<ApplicationDbContext>());
 
 // =======================
 // APPLICATION SERVICES
@@ -58,8 +58,11 @@ builder.Services.AddApplicationServices();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ICartService, CartService>();
 
+builder.Services.AddScoped<IUserService, UserService>();
+
+
 // =======================
-// ORDER / PAYMENT SERVICES
+// ORDER / PAYMENT SERVICES     
 // =======================
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();

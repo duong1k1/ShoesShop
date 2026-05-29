@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using ShoesShop.Application.Interfaces.Common;
 using ShoesShop.Application.Interfaces.Services;
 using ShoesShop.Domain.Entities;
 using System;
@@ -15,11 +16,11 @@ namespace ShoesShop.Application.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly DbContext _context;
+        private readonly IApplicationDbContext _context;
         private readonly IConfiguration _configuration;
         private readonly IEmailService _emailService;
 
-        public AuthService(DbContext context, IConfiguration configuration, IEmailService emailService)
+        public AuthService(IApplicationDbContext context, IConfiguration configuration, IEmailService emailService)
         {
             _context = context;
             _configuration = configuration;
@@ -29,7 +30,7 @@ namespace ShoesShop.Application.Services
         public async Task<string> RegisterAsync(string email, string password, string fullName, string? phoneNumber)
         {
             // 1. Kiểm tra xem Email đã tồn tại chưa
-            var isExist = await _context.Set<User>().AnyAsync(u => u.Email == email);
+            var isExist = await _context.Users.AnyAsync(u => u.Email == email);
             if (isExist) return "Email đã tồn tại trên hệ thống!";
 
             // 2. Mã hóa mật khẩu bảo mật bằng BCrypt
@@ -48,7 +49,7 @@ namespace ShoesShop.Application.Services
                 Role = "Customer"    // Khớp với chuỗi văn bản 'Customer'
             };
 
-            _context.Set<User>().Add(user);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             // 4. TỰ ĐỘNG GỬI EMAIL THÔNG BÁO CHÀO MỪNG
@@ -91,7 +92,7 @@ namespace ShoesShop.Application.Services
 
         public async Task<string?> LoginAsync(string email, string password)
         {
-            var user = await _context.Set<User>()
+            var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == email && u.Status == "Active");
 
             if (user == null) return null;
@@ -134,7 +135,7 @@ namespace ShoesShop.Application.Services
 
         public async Task<bool> UpdateUserRoleAsync(int userId, string newRole)
         {
-            var user = await _context.Set<User>().FirstOrDefaultAsync(u => u.Id == userId);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null) return false;
 
             int targetRoleId = 3;

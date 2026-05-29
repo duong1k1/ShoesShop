@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShoesShop.Application.Interfaces.Common;
 using ShoesShop.Domain.Entities;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
 namespace ShoesShop.Infrastructure.Persistence;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public DbSet<PaymentTransaction> PaymentTransactions => Set<PaymentTransaction>();
     /// <summary>
@@ -33,12 +34,28 @@ public class ApplicationDbContext : DbContext
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
 
+    public DbSet<User> Users => Set<User>();
+    public DbSet<VoucherUsage> VoucherUsages => Set<VoucherUsage>();
+
     //
 
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Ignore<UserRole>();
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable("Users");
+
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("UserId");
+
+            entity.Property(e => e.Role).HasColumnName("Role").HasColumnType("nvarchar(50)");
+            entity.Property(e => e.PhoneNumber).HasColumnName("Phone");
+        });
 
         modelBuilder.Entity<Cart>(entity =>
         {
